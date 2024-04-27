@@ -1,5 +1,10 @@
-FROM nginx:latest
+FROM python:3.11.9
 
-COPY . /usr/share/nginx/html/
+WORKDIR /usr/src/app
 
-EXPOSE 85
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD [ "python", "gamezone.py" ]
